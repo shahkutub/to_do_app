@@ -9,25 +9,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(title: Text("Todo List")),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Add your onPressed code here!
+          _displayDialog(context);
+        },
+        label: const Text(''),
+        icon: const Icon(Icons.add),
+        backgroundColor: Colors.pink,
+      ),
       body: Container(
         alignment: Alignment.topLeft,
         padding: EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: TextFormField(
-                  controller: _taskController.addTaskController,
-                  decoration: InputDecoration(hintText: "Enter a task"),
-                )),
-                IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      _taskController.addData();
-                    })
-              ],
-            ),
+
             Expanded(
               child: Obx(() => ListView.builder(
                     itemCount: _taskController.taskData.length,
@@ -45,4 +41,30 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+  _displayDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Add todo'),
+            content: TextField(
+              controller: _taskController.addTaskController,
+              textInputAction: TextInputAction.done,
+              //keyboardType: TextInputType.numberWithOptions(),
+              decoration: InputDecoration(hintText: "Enter your todo"),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Submit'),
+                onPressed: () {
+                  _taskController.addData();
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
 }
