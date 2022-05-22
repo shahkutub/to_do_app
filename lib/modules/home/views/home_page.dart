@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:listtodo_get/modules/home/controllers/home_controller.dart';
+import 'package:listtodo_get/routes/app_pages.dart';
 
-import '../controller/task_controller.dart';
 
 class HomePage extends StatelessWidget {
-  final TaskController _taskController = Get.put(TaskController());
+  final HomeController _taskController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: Text("Todo List")),
+      appBar:AppBar(
+      title: Text("Todo App"),
+      actions: <Widget>[
+      IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () {
+          Get.toNamed(Routes.SEARCH);
+        },
+      )
+
+    ],
+    ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           // Add your onPressed code here!
@@ -29,10 +41,10 @@ class HomePage extends StatelessWidget {
                     itemCount: _taskController.taskData.length,
                     itemBuilder: (context, index) => ListTile(
                       leading: Text(_taskController.taskData[index].title),
-                      trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () => _taskController
-                              .deleteTask(_taskController.taskData[index].id)),
+                      // trailing: IconButton(
+                      //     icon: Icon(Icons.delete),
+                      //     onPressed: () => _taskController
+                      //         .deleteTask(_taskController.taskData[index].id)),
                     ),
                   )),
             ),

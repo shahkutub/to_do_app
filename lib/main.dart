@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'view/home_page.dart';
+import 'modules/home/views/home_page.dart';
+import 'routes/app_pages.dart';
 
 main(List<String> args) {
   runApp(MyApp());
@@ -11,10 +13,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.indigo),
-      home: HomePage(),
+      title: "Application",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+
     );
+
+    //   MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   theme: ThemeData(primarySwatch: Colors.indigo),
+    //   home: HomePage(),
+    // );
   }
 }

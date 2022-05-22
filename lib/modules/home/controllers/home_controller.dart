@@ -3,10 +3,11 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:get/get.dart';
 
-import '../database/database_fetch.dart';
-import '../model/task_data.dart';
+import '../../../database/database_fetch.dart';
+import '../../../model/task_data.dart';
 
-class TaskController extends GetxController {
+
+class HomeController extends GetxController {
   var taskData = List<TaskData>().obs;
   TextEditingController addTaskController;
 
