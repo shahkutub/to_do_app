@@ -58,4 +58,21 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.rawQuery("DELETE FROM $table");
   }
+
+  Future<int> update(Map<String, dynamic> row) async {
+    Database db = await instance.database;
+    int id = row[columnId];
+    return await db.update(table, row, where: '$columnId = ?', whereArgs: [id]);
+  }
+
+  Future<dynamic> querySingleData (int id) async {
+    final db = await database;
+    return await db.query(
+        table,
+        where: "${columnId} = ? ",
+        whereArgs: [id],
+        limit: 1
+    );
+  }
+
 }

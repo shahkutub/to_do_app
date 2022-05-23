@@ -1,35 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:listtodo_get/modules/detailse/controllers/details_controller.dart';
 import 'package:listtodo_get/modules/home/controllers/home_controller.dart';
 import 'package:listtodo_get/routes/app_pages.dart';
 
 
-class HomePage extends StatelessWidget {
-  final HomeController _taskController = Get.put(HomeController());
+class DetailsPage extends StatelessWidget {
+  final DetailsController _taskController = Get.put(DetailsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-      title: Text("Todo App"),
-      actions: <Widget>[
-      IconButton(
-        icon: Icon(Icons.search),
-        onPressed: () {
-          Get.toNamed(Routes.SEARCH);
-        },
-      )
+      title: Text("Details"),
 
-    ],
     ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Add your onPressed code here!
-          _displayDialog(context);
-        },
-        label: const Text(''),
-        icon: const Icon(Icons.add),
-        backgroundColor: Colors.pink,
-      ),
+
       body: Container(
         alignment: Alignment.topLeft,
         padding: EdgeInsets.all(16),
@@ -41,16 +26,10 @@ class HomePage extends StatelessWidget {
                     itemCount: _taskController.taskData.length,
                     itemBuilder: (context, index) => ListTile(
                       leading: Text(_taskController.taskData[index].title),
-                      trailing: IconButton(
-                          icon: Icon(Icons.remove_red_eye),
-                          // onPressed: () => _taskController
-                          //     .deleteTask(_taskController.taskData[index].id)
-                        onPressed: () {
-                          Get.toNamed(Routes.DETAILS, arguments: [
-                            {"id": _taskController.taskData[index].id}
-                          ]);
-                        },
-                      ),
+                      // trailing: IconButton(
+                      //     icon: Icon(Icons.delete),
+                      //     onPressed: () => _taskController
+                      //         .deleteTask(_taskController.taskData[index].id)),
                     ),
                   )),
             ),

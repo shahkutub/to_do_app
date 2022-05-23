@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:listtodo_get/modules/detailse/bindings/details_binding.dart';
+import 'package:listtodo_get/modules/detailse/views/details_page.dart';
 import 'package:listtodo_get/modules/home/bindings/home_binding.dart';
 import 'package:listtodo_get/modules/home/views/home_page.dart';
 import 'package:listtodo_get/modules/search/bindings/search_binding.dart';
@@ -33,6 +35,12 @@ class AppPages {
       name: _Paths.SEARCH,
       page: () => SearchPage(),
       binding: SearchBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.DETAILS,
+      page: () => DetailsPage(),
+      binding: DetailsBinding(),
     ),
 
   ];

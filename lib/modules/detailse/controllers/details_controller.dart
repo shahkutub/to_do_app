@@ -7,12 +7,10 @@ import '../../../database/database_fetch.dart';
 import '../../../model/task_data.dart';
 
 
-class HomeController extends GetxController {
+class DetailsController extends GetxController {
   var taskData = List<TaskData>().obs;
   TextEditingController addTaskController;
   dynamic argumentData = Get.arguments;
-
-
   @override
   void onInit() {
     addTaskController = TextEditingController();
@@ -38,6 +36,17 @@ class HomeController extends GetxController {
 
   void deleteTask(int id) async {
     await DatabaseHelper.instance.delete(id);
+
+    taskData.removeWhere((element) => element.id == id);
+  }
+
+  void updateTask(int id) async {
+    Map<String, dynamic> row = {
+      DatabaseHelper.columnId: argumentData[0]['id'],
+      DatabaseHelper.columnTitle: "",
+
+    };
+    await DatabaseHelper.instance.update(row);
 
     taskData.removeWhere((element) => element.id == id);
   }
