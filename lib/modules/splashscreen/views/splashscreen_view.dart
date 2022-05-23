@@ -19,7 +19,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Splash screen',style:TextStyle(color: Colors.white,fontSize: 15) ),
+          //Text('Splash screen',style:TextStyle(color: Colors.white,fontSize: 15) ),
         ],
       ),
     );

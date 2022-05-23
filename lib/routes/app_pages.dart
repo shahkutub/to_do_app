@@ -5,6 +5,7 @@ import 'package:listtodo_get/modules/home/bindings/home_binding.dart';
 import 'package:listtodo_get/modules/home/views/home_page.dart';
 import 'package:listtodo_get/modules/search/bindings/search_binding.dart';
 import 'package:listtodo_get/modules/search/views/search_page.dart';
+import 'package:listtodo_get/modules/splashscreen/views/GetXOnboarding.dart';
 
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
@@ -22,7 +23,7 @@ class AppPages {
 
     GetPage(
       name: _Paths.SPLASHSCREEN,
-      page: () => SplashscreenView(),
+      page: () => GetXOnboarding(),
       binding: SplashscreenBinding(),
     ),
     GetPage(

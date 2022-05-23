@@ -4,10 +4,12 @@ import 'package:listtodo_get/modules/home/controllers/home_controller.dart';
 import 'package:listtodo_get/routes/app_pages.dart';
 
 
-class HomePage extends StatelessWidget {
-  final HomeController _taskController = Get.put(HomeController());
+class HomePage extends GetView<HomeController> {
+  //final HomeController _taskController = Get.put(HomeController());
+  //final HomeController _taskController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
+    //Get.find<HomeController>();
     return Scaffold(
       appBar:AppBar(
       title: Text("Todo App"),
@@ -38,16 +40,16 @@ class HomePage extends StatelessWidget {
 
             Expanded(
               child: Obx(() => ListView.builder(
-                    itemCount: _taskController.taskData.length,
+                    itemCount: controller.taskData.length,
                     itemBuilder: (context, index) => ListTile(
-                      leading: Text(_taskController.taskData[index].title),
+                      leading: Text(controller.taskData[index].title),
                       trailing: IconButton(
                           icon: Icon(Icons.remove_red_eye),
                           // onPressed: () => _taskController
                           //     .deleteTask(_taskController.taskData[index].id)
                         onPressed: () {
                           Get.toNamed(Routes.DETAILS, arguments: [
-                            {"id": _taskController.taskData[index].id}
+                            {"id": controller.taskData[index].id}
                           ]);
                         },
                       ),
@@ -67,7 +69,7 @@ class HomePage extends StatelessWidget {
           return AlertDialog(
             title: Text('Add todo'),
             content: TextField(
-              controller: _taskController.addTaskController,
+              controller: controller.addTaskController,
               textInputAction: TextInputAction.done,
               //keyboardType: TextInputType.numberWithOptions(),
               decoration: InputDecoration(hintText: "Enter your todo"),
@@ -76,7 +78,8 @@ class HomePage extends StatelessWidget {
               new FlatButton(
                 child: new Text('Submit'),
                 onPressed: () {
-                  _taskController.addData();
+                  controller.addData();
+                  //_taskController.insert_task_ToLocalDB();
                   Navigator.of(context).pop();
                 },
               )
